@@ -17,6 +17,7 @@ const router = useRouter();
 const [modalVisible, setModalVisible] = useState(false);
 const [roomName, setRoomName] = useState('');
 const [color, setColor] = useState('');
+const [notes, setNotes] = useState('');
 
 const handleProfilePress = () => {
 router.push('/profile' as any);
@@ -80,117 +81,165 @@ onChangeText={setColor}
 <Ionicons name="image-outline" size={24} color="#555" />
 <Text style={styles.imagePickerText}>اختر الصور</Text>
 </TouchableOpacity>
+
+
+<Text style={styles.label}> الملاحظات </Text>
+<TextInput style={[styles.input, styles.textArea]}
+placeholder="أدخل الملاحظات..."
+placeholderTextColor="#999"
+multiline={true}
+numberOfLines={3}
+value={notes}
+onChangeText={setNotes}
+/>
 </ScrollView>
+
+<View style={styles.modalFooter}>
+<TouchableOpacity style={styles.saveButton}
+onPress={() =>{
+setModalVisible(false);
+}}>
+<Text style={styles.saveButtonText}> حفظ سريع </Text>
+</TouchableOpacity>
+
+<TouchableOpacity
+style={styles.fullPageButton}
+onPress={handleOpenFullPage}
+>
+<Ionicons name="open-outline" size={18} color="#007AFF" />
+<Text style={styles.fullPageButtonText}>تأكيد وتعديل كامل التفاصيل</Text>
+</TouchableOpacity>
+
+</View>
 </View>
 </View>
 </Modal>
 </SafeAreaView>
+
+
 );
 }
 
 const styles = StyleSheet.create({
 container: {
 flex: 1,
-backgroundColor: '#f5f7ff',
+backgroundColor: '#121212',
 },
 header: {
-flexDirection: 'row',
-justifyContent: 'flex-end',
 paddingHorizontal: 20,
-paddingTop: 20,
-paddingBottom: 10,
+paddingTop: 10,
+alignItems: 'flex-start',
 },
 avatarButton: {
-width: 56,
-height: 56,
-borderRadius: 28,
-alignItems: 'center',
-justifyContent: 'center',
-backgroundColor: '#4C6FFF',
+padding: 4,
 },
 content: {
 flex: 1,
-alignItems: 'center',
 justifyContent: 'center',
-paddingBottom: 60,
+alignItems: 'center',
 },
 addButton: {
-width: 140,
-height: 140,
-borderRadius: 70,
-backgroundColor: '#4C6FFF',
-alignItems: 'center',
+width: 90,
+height: 90,
+borderRadius: 45,
+borderWidth: 2,
+borderColor: '#fff',
 justifyContent: 'center',
-elevation: 5,
-shadowColor: '#000',
-shadowOpacity: 0.2,
-shadowRadius: 8,
-shadowOffset: { width: 0, height: 4 },
+alignItems: 'center',
 },
 addText: {
-marginTop: 20,
-fontSize: 18,
-color: '#333',
-fontWeight: 'bold',
-textAlign: 'center',
+color: '#aaa',
+marginTop: 12,
+fontSize: 16,
 },
 modalOverlay: {
 flex: 1,
-backgroundColor: 'rgba(0,0,0,0.45)',
+backgroundColor: 'rgba(0, 0, 0, 0.7)',
 justifyContent: 'center',
 alignItems: 'center',
 padding: 20,
 },
 modalContent: {
 width: '100%',
-maxWidth: 420,
-backgroundColor: '#fff',
-borderRadius: 16,
+maxHeight: '80%',
+backgroundColor: '#ffffff',
+borderRadius: 20,
 padding: 20,
-paddingTop: 12,
+elevation: 5,
 },
 closeButton: {
 alignSelf: 'flex-end',
-padding: 8,
+padding: 4,
 },
 modalTitle: {
-fontSize: 24,
+fontSize: 20,
 fontWeight: 'bold',
+textAlign: 'center',
+marginBottom: 15,
 color: '#333',
-marginBottom: 16,
-textAlign: 'right',
 },
 label: {
 fontSize: 14,
-color: '#333',
-marginBottom: 8,
+fontWeight: '600',
+color: '#444',
+marginTop: 10,
+marginBottom: 6,
 textAlign: 'right',
 },
 input: {
-borderWidth: 1,
-borderColor: '#ddd',
+backgroundColor: '#f5f5f5',
 borderRadius: 10,
-paddingHorizontal: 12,
-paddingVertical: 10,
-fontSize: 16,
-marginBottom: 16,
+padding: 12,
+fontSize: 14,
+color: '#333',
 textAlign: 'right',
-backgroundColor: '#f9f9f9',
+},
+textArea: {
+height: 70,
+textAlignVertical: 'top',
 },
 imagePickerButton: {
-flexDirection: 'row',
+flexDirection: 'row-reverse',
 alignItems: 'center',
 justifyContent: 'center',
-borderWidth: 1,
-borderColor: '#ddd',
+backgroundColor: '#f0f0f0',
+padding: 12,
 borderRadius: 10,
-paddingVertical: 12,
-backgroundColor: '#f5f5f5',
+borderStyle: 'dashed',
+borderWidth: 1,
+borderColor: '#ccc',
 },
 imagePickerText: {
-marginLeft: 8,
-fontSize: 16,
+marginRight: 8,
 color: '#555',
-textAlign: 'center',
+fontSize: 14,
+},
+modalFooter: {
+marginTop: 15,
+gap: 10,
+},
+saveButton: {
+backgroundColor: '#007AFF',
+padding: 14,
+borderRadius: 10,
+alignItems: 'center',
+},
+saveButtonText: {
+color: '#fff',
+fontWeight: 'bold',
+fontSize: 16,
+},
+fullPageButton: {
+flexDirection: 'row',
+justifyContent: 'center',
+alignItems: 'center',
+padding: 10,
+gap: 6,
+},
+fullPageButtonText: {
+color: '#007AFF',
+fontSize: 14,
+fontWeight: '600',
 },
 });
+
